@@ -14,6 +14,7 @@ def createlist(request):
     if request.method=='POST':
         form = SimpleListForm(request.POST)
         if form.is_valid():
+            new_shoppinglist.owner = request.user.username
             new_shoppinglist = form.save()
             return redirect('myshoppinglists')
         else:
@@ -25,7 +26,7 @@ def createlist(request):
 @login_required(login_url='/login/')
 def myshoppinglists(request):
     # Users not included yet, getting all lists
-    shopping_lists = SimpleList.objects.filter(finished=False)
+    shopping_lists = SimpleList.objects.filter(finished=False, owner=request.user.username)
     return render(request, 'shoppinglist/my_shopping_lists.html', {'lists': shopping_lists})
 
 def list_detail(request, pk):
