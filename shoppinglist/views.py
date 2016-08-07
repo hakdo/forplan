@@ -8,7 +8,7 @@ from . forms import SimpleListForm, loginForm
 def init(request):
     return render(request,'shoppinglist/init.html',{})
 
-@login_required(login_url='login/')
+@login_required(login_url='/login/')
 def createlist(request):
     if request.method=='POST':
         form = SimpleListForm(request.POST)
@@ -21,7 +21,7 @@ def createlist(request):
         form = SimpleListForm()
         return render(request, 'shoppinglist/createlist.html', {'form': form})
 
-@login_required(login_url='login/')
+@login_required(login_url='/login/')
 def myshoppinglists(request):
     # Users not included yet, getting all lists
     shopping_lists = SimpleList.objects.filter(finished=False)
