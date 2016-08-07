@@ -1,0 +1,9 @@
+{% extends 'shoppinglist/base.html' %}
+
+{% block content %}
+<h1>Logg inn</h1>
+<form method="POST">{% csrf_token %}
+{{ form.as_p }}
+<button class="btn btn-default" type="submit">Logg meg inn!</button>
+</form>
+{% endblock %}
