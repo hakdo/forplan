@@ -106,7 +106,8 @@ div.cookiesplain:hover {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-        <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li>
+          <a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         {% else %}
         <li><a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         {% endif %}
@@ -139,7 +140,7 @@ div.cookiesplain:hover {
 </div>
 <br />
 <footer class="container-fluid text-center">
-  <p>Ha en fin dag!</p>
+  <p>Ha en fin dag, {{ user.username }}!</p>
 </footer>
 <address>(c) 2016 by <a href="https://www.twitter.com/sjfersuper">@sjefersuper</a>.
 <div class="cookiesplain">

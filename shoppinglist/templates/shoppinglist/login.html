@@ -2,8 +2,12 @@
 
 {% block content %}
 <h1>Logg inn</h1>
+{% if user.is_authenticated %}
+<p>Du er allerede logget inn som {{ user.username }}.</p>
+{% else %}
 <form method="POST">{% csrf_token %}
 {{ form.as_p }}
 <button class="btn btn-default" type="submit">Logg meg inn!</button>
 </form>
+{% endif %}
 {% endblock %}

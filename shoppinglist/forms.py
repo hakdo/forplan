@@ -13,3 +13,8 @@ class SimpleListForm(forms.ModelForm):
 class loginForm(forms.Form):
     username=forms.CharField(max_length=200)
     password=forms.CharField(max_length=30)
+
+class registernewForm(forms.Form):
+    username=forms.CharField(max_length=200)
+    email=forms.EmailField()
+    password=forms.CharField(max_length=30,widget=forms.PasswordInput())

@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^myshoppinglists/detail/(?P<pk>\d+)/$',views.list_detail,name='listdetail'),
     url(r'^login/$',views.userlogin,name='userlogin'),
     url(r'^logout/$',views.userlogout,name='userlogout'),
+    url(r'^registernew/$',views.newuser,name='newuser'),
+    url(r'^welcome/$',views.welcome,name='welcome'),
 ]

@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import SimpleList
-from . forms import SimpleListForm, loginForm
+from . forms import SimpleListForm, loginForm, registernewForm
 # Create your views here.
 
 def init(request):
@@ -59,3 +60,22 @@ def userlogin(request):
 def userlogout(request):
     logout(request)
     return redirect('init')
+
+def newuser(request):
+    if request.method == 'POST':
+        new_user = registernewForm(request.POST)
+        if new_user.is_valid():
+            username = new_user.cleaned_data['username']
+            email = new_user.cleaned_data['email']
+            password=new_user.cleaned_data['password']
+            user = User.objects.create_user(username,email,password)
+            user.save()
+            return redirect('welcome')
+        else:
+            return HttpResponse('Darn')
+    else:
+        form = registernewForm()
+        return render(request,'shoppinglist/register_new.html',{'form': form})
+
+def welcome(request):
+    return render(request,'shoppinglist/welcome.html',{})
