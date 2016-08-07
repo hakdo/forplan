@@ -68,11 +68,14 @@ def newuser(request):
             username = new_user.cleaned_data['username']
             email = new_user.cleaned_data['email']
             password=new_user.cleaned_data['password']
-            user = User.objects.create_user(username,email,password)
-            user.save()
-            return redirect('welcome')
+            try:
+                user = User.objects.create_user(username,email,password)
+                user.save()
+                return redirect('welcome')
+            except:
+                return HttpResponse('Noe gikk feil. Prøv igjen med et annet brukernavn/passord.')
         else:
-            return HttpResponse('Darn')
+            return HttpResponse('Noe gikk feil. Dette skal ikke gå an. Hvordan fikk du til dette?')
     else:
         form = registernewForm()
         return render(request,'shoppinglist/register_new.html',{'form': form})

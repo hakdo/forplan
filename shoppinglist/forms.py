@@ -11,10 +11,10 @@ class SimpleListForm(forms.ModelForm):
         }
 
 class loginForm(forms.Form):
-    username=forms.CharField(max_length=200)
-    password=forms.CharField(max_length=30)
+    username=forms.CharField(max_length=200,label='Brukernavn')
+    password=forms.CharField(max_length=30,label='Passord',widget=forms.PasswordInput())
 
 class registernewForm(forms.Form):
-    username=forms.CharField(max_length=200)
-    email=forms.EmailField()
-    password=forms.CharField(max_length=30,widget=forms.PasswordInput())
+    username=forms.CharField(max_length=20,label='Ønsket brukernavn')
+    email=forms.EmailField(label='E-post')
+    password=forms.CharField(max_length=30,widget=forms.PasswordInput(),label='Passord')

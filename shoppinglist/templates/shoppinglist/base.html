@@ -140,7 +140,11 @@ div.cookiesplain:hover {
 </div>
 <br />
 <footer class="container-fluid text-center">
+  {% if user.is_authenticated %}
   <p>Ha en fin dag, {{ user.username }}!</p>
+  {% else %}
+  <p>Ha en fin dag!</p>
+  {% endif %}
 </footer>
 <address>(c) 2016 by <a href="https://www.twitter.com/sjfersuper">@sjefersuper</a>.
 <div class="cookiesplain">
