@@ -14,6 +14,7 @@ def createlist(request):
     if request.method=='POST':
         form = SimpleListForm(request.POST)
         if form.is_valid():
+            new_shoppinglist = form.save(commit=False)
             new_shoppinglist.owner = request.user.username
             new_shoppinglist = form.save()
             return redirect('myshoppinglists')
